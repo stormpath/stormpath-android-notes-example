@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Stormpath Notes</string>
+    <string name="action_logout">Logout</string>
+
+    <string name="saving">Saving note....</string>
+    <string name="saved"></string>
+</resources>
