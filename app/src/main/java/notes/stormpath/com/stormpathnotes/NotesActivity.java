@@ -104,27 +104,7 @@ public class NotesActivity extends AppCompatActivity {
             }
         });
 
-        //launch service
-        Stormpath.getUserProfile(new StormpathCallback<UserProfile>() {
-            @Override
-            public void onSuccess(UserProfile userProfile) {
 
-            }
-
-            @Override
-            public void onFailure(StormpathError error) {
-
-                //store note written client side
-
-                //show login view again
-
-                Stormpath.logout();
-
-                startActivity(new Intent(context, StormpathLoginActivity.class));
-
-
-            }
-        });
 
 
     }
@@ -140,17 +120,7 @@ public class NotesActivity extends AppCompatActivity {
         LocalBroadcastManager.getInstance(this).registerReceiver(onNoteReceived, noteGetFilter);
         LocalBroadcastManager.getInstance(this).registerReceiver(onNoteReceived, notePostFilter);
 
-        //if not logged in, show stormpath activity
-        if(Stormpath.accessToken()==null){
 
-            startActivity(new Intent(this, StormpathLoginActivity.class));
-
-
-        }else {
-
-            getNotes();
-
-        }
     }
 
     @Override
@@ -257,9 +227,6 @@ public class NotesActivity extends AppCompatActivity {
 
             mNote.setText(""); //clears edit text, could alternatively save to shared preferences
 
-            Stormpath.logout();
-
-            startActivity(new Intent(context, StormpathLoginActivity.class));
 
             return true;
         }
