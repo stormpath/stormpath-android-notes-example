@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "/Users/ericlw/Development/stormpath-android-notes-example/app/build/intermediates/res/merged/debug/mipmap-hdpi-v4/ic_launcher.png",
+        "source": "/Users/ericlw/Development/stormpath-android-notes-example/app/src/main/res/mipmap-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/ericlw/Development/stormpath-android-notes-example/stormpath-android-notes-example/build/intermediates/res/merged/debug/mipmap-hdpi-v4/ic_launcher.png",
+        "source": "/Users/ericlw/Development/stormpath-android-notes-example/stormpath-android-notes-example/src/main/res/mipmap-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/ericlw/Development/StormpathNotes/app/build/intermediates/res/merged/debug/mipmap-hdpi-v4/ic_launcher.png",
+        "source": "/Users/ericlw/Development/StormpathNotes/app/src/main/res/mipmap-hdpi/ic_launcher.png"
+    }
+]

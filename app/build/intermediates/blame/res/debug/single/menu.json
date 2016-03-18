@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "/Users/ericlw/Development/stormpath-android-notes-example/stormpath-android-notes-example/build/intermediates/res/merged/debug/menu/menu_notes.xml",
+        "source": "/Users/ericlw/Development/stormpath-android-notes-example/stormpath-android-notes-example/src/main/res/menu/menu_notes.xml"
+    },
+    {
+        "merged": "/Users/ericlw/Development/stormpath-android-notes-example/app/build/intermediates/res/merged/debug/menu/menu_notes.xml",
+        "source": "/Users/ericlw/Development/stormpath-android-notes-example/app/src/main/res/menu/menu_notes.xml"
+    },
+    {
+        "merged": "/Users/ericlw/Development/StormpathNotes/app/build/intermediates/res/merged/debug/menu/menu_notes.xml",
+        "source": "/Users/ericlw/Development/StormpathNotes/app/src/main/res/menu/menu_notes.xml"
+    }
+]
