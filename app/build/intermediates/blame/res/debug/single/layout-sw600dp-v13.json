@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "/Users/ericlw/Development/StormpathNotes/app/build/intermediates/res/merged/debug/layout-sw600dp-v13/design_layout_snackbar.xml",
+        "source": "/Users/ericlw/Development/StormpathNotes/app/build/intermediates/exploded-aar/com.android.support/design/23.2.0/res/layout-sw600dp-v13/design_layout_snackbar.xml"
+    },
+    {
+        "merged": "/Users/ericlw/Development/stormpath-android-notes-example/stormpath-android-notes-example/build/intermediates/res/merged/debug/layout-sw600dp-v13/design_layout_snackbar.xml",
+        "source": "/Users/ericlw/Development/stormpath-android-notes-example/stormpath-android-notes-example/build/intermediates/exploded-aar/com.android.support/design/23.2.0/res/layout-sw600dp-v13/design_layout_snackbar.xml"
+    },
+    {
+        "merged": "/Users/ericlw/Development/stormpath-android-notes-example/app/build/intermediates/res/merged/debug/layout-sw600dp-v13/design_layout_snackbar.xml",
+        "source": "/Users/ericlw/Development/stormpath-android-notes-example/app/build/intermediates/exploded-aar/com.android.support/design/23.2.0/res/layout-sw600dp-v13/design_layout_snackbar.xml"
+    }
+]
