@@ -55,6 +55,7 @@ fabric.properties
 ### Gradle ###
 .gradle
 build/
+app/build/
 
 # Ignore Gradle GUI config
 gradle-app.setting
@@ -144,3 +145,24 @@ Temporary Items
 # Linux trash folder which might appear on any partition or disk
 .Trash-*
 
+.pidea/.name
+.pidea/compiler.xml
+.pidea/gradle.xml
+.pidea/misc.xml
+.pidea/modules.xml
+.pidea/runConfigurations.xml
+.pidea/vcs.xml
+.pidea/workspace.xml
+.pidea/copyright/profiles_settings.xml
+.pidea/libraries/animated_vector_drawable_23_2_0.xml
+.pidea/libraries/appcompat_v7_23_2_0.xml
+.pidea/libraries/design_23_2_0.xml
+.pidea/libraries/logging_interceptor_3_1_2.xml
+.pidea/libraries/moshi_1_1_0.xml
+.pidea/libraries/okhttp_3_1_2.xml
+.pidea/libraries/okio_1_6_0.xml
+.pidea/libraries/recyclerview_v7_23_2_0.xml
+.pidea/libraries/stormpath_sdk_android_1_0_0.xml
+.pidea/libraries/support_annotations_23_2_0.xml
+.pidea/libraries/support_v4_23_2_0.xml
+.pidea/libraries/support_vector_drawable_23_2_0.xml
