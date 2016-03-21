@@ -63,16 +63,7 @@ public class NotesActivity extends AppCompatActivity {
         context = this;
 
         //initialize OkHttp library
-        HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
-            @Override
-            public void log(String message) {
-                Stormpath.logger().d(message);
-            }
-        });
-        httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        this.okHttpClient = new OkHttpClient.Builder()
-                .addNetworkInterceptor(httpLoggingInterceptor)
-                .build();
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -128,86 +119,7 @@ public class NotesActivity extends AppCompatActivity {
         super.onPause();
         LocalBroadcastManager.getInstance(this).unregisterReceiver(onNoteReceived);
     }
-
-    private void getNotes(){
-
-        Request request = new Request.Builder()
-                .url(NotesApp.baseUrl + "notes")
-                .headers(buildStandardHeaders(Stormpath.accessToken()))
-                .get()
-                .build();
-
-        okHttpClient.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-
-                JSONObject mNotes;
-                try {
-                    mNotes = new JSONObject(response.body().string());
-                    String noteCloud = mNotes.getString("notes");
-
-                    Intent intent = new Intent(ACTION_GET_NOTES);
-                    // You can also include some extra data.
-                    intent.putExtra("notes", noteCloud);
-
-                    LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
-
-                } catch (JSONException e){
-
-                }
-
-            }
-
-        });
-
-    }
-
-    private void saveNote(){
-
-        RequestBody requestBody = new FormBody.Builder()
-                .add("notes", mNote.getText().toString())
-                .build();
-
-        Request request = new Request.Builder()
-                .url(NotesApp.baseUrl + "notes")
-                .headers(buildStandardHeaders((Stormpath.accessToken())))
-                .post(requestBody)
-                .build();
-
-        okHttpClient.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-
-                Intent intent = new Intent(ACTION_POST_NOTES);
-
-                LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
-
-            }
-        });
-
-
-    }
-
-    private Headers buildStandardHeaders(String accessToken) {
-        Headers.Builder builder = new Headers.Builder();
-        builder.add("Accept", "application/json");
-        if (StringUtils.isNotBlank(accessToken)) {
-            builder.add("Authorization", "Bearer " + accessToken);
-        }
-        return builder.build();
-    }
-
-
+    
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
