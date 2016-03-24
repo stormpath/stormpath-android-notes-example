@@ -22,10 +22,12 @@
         </intent-filter>
     </activity>
 
-    <activity
-            android:name=".stormpath.StormpathLoginActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+    <activity android:name="com.stormpath.sdk.ui.StormpathLoginActivity"
+              android:theme="@style/AppTheme.NoActionBar"
+              android:windowSoftInputMode="stateHidden|adjustResize">
+        <meta-data
+                android:name="StormpathLoginActivity.AUTO_LOGIN_AFTER_REGISTER"
+                android:value="true"/>
     </activity>
 
 </application>
