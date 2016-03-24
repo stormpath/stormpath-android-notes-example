@@ -5,6 +5,7 @@ import com.stormpath.sdk.Stormpath;
 import com.stormpath.sdk.StormpathCallback;
 import com.stormpath.sdk.models.StormpathError;
 import com.stormpath.sdk.models.UserProfile;
+import com.stormpath.sdk.ui.StormpathLoginActivity;
 import com.stormpath.sdk.utils.StringUtils;
 
 import org.json.JSONException;
@@ -31,7 +32,6 @@ import android.widget.EditText;
 
 import java.io.IOException;
 
-import notes.stormpath.com.stormpathnotes.stormpath.StormpathLoginActivity;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Dispatcher;
