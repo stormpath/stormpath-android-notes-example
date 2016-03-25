@@ -31,7 +31,6 @@ import android.widget.EditText;
 
 import java.io.IOException;
 
-import notes.stormpath.com.stormpathnotes.stormpath.StormpathLoginActivity;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Dispatcher;
@@ -73,7 +72,7 @@ public class NotesActivity extends AppCompatActivity {
                 Snackbar.make(view, getString(R.string.saving), Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
 
-                saveNote();
+                //saveNote();
             }
         });
 
