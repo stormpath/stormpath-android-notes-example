@@ -1,6 +1,6 @@
 # Stormpath Notes (Android)
 
-This is the repository for the [Stormpath Notes Android tutorial](https://stormpath.com/blog/build-user-authentication-for-android-app/)-swift-ios/).
+This is the repository for the [Stormpath Notes Android tutorial](https://stormpath.com/blog/build-user-authentication-for-android-app/).
 
 It is a demo for using Stormpath with your app and server that uses additional endpoints.
 
