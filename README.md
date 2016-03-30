@@ -2,7 +2,7 @@
 
 This is the repository for the [Stormpath Notes Android tutorial](https://stormpath.com/blog/build-user-authentication-for-android-app/).
 
-It is a demo for using Stormpath with your app and server that uses additional endpoints.
+It is a demo for using Stormpath with your app and server that uses additional endpoints. It features login with username and password, registration and resetting password using the Stormpath SDK and Stormpath UI library.
 
 ## Other Information
 
