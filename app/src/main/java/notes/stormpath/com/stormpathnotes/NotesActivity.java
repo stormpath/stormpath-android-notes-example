@@ -3,6 +3,7 @@ package notes.stormpath.com.stormpathnotes;
 import com.squareup.moshi.Moshi;
 import com.stormpath.sdk.Stormpath;
 import com.stormpath.sdk.StormpathCallback;
+import com.stormpath.sdk.models.SocialProvidersResponse;
 import com.stormpath.sdk.models.StormpathError;
 import com.stormpath.sdk.models.UserProfile;
 import com.stormpath.sdk.ui.StormpathLoginActivity;
@@ -29,6 +30,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.io.IOException;
 
@@ -52,6 +54,62 @@ public class NotesActivity extends AppCompatActivity {
     private OkHttpClient okHttpClient;
     public static final String ACTION_GET_NOTES = "notes.get";
     public static final String ACTION_POST_NOTES = "notes.post";
+
+    //used to intercept the social media oauth callbacks
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        // getIntent() should always return the most recent
+        setIntent(intent);
+
+        //check contents of intent
+        if(getIntent().getData()!=null && getIntent().getData().getScheme()!=null){
+
+            if(getIntent().getData().getScheme().contentEquals(getString(R.string.fb_app_id))){
+
+                //should retrieve the access tokens here and pass it to Stormpath
+
+                Stormpath.socialLogin(SocialProvidersResponse.FACEBOOK, loginResult.getAccessToken().getToken(),
+                        new StormpathCallback<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                // we are logged in via fb!
+                                Toast.makeText(NotesActivity.this, "Success! " + loginResult.getAccessToken().getToken(), Toast.LENGTH_LONG).show();
+                            }
+
+                            @Override
+                            public void onFailure(StormpathError error) {
+                                Toast.makeText(NotesActivity.this, error.message(), Toast.LENGTH_LONG).show();
+                            }
+                        });
+
+
+
+            }//end if
+            else if(getIntent().getData().getScheme().contentEquals(getString(R.string.google_app_id))){
+                /*
+                //google requires something more
+
+                Stormpath.socialLogin(SocialProvidersResponse.GOOGLE, loginResult.getAccessToken().getToken(),
+                        new StormpathCallback<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                // we are logged in via Google+!
+                                Toast.makeText(NotesActivity.this, "Success! " + loginResult.getAccessToken().getToken(), Toast.LENGTH_LONG).show();
+                            }
+
+                            @Override
+                            public void onFailure(StormpathError error) {
+                                Toast.makeText(NotesActivity.this, error.message(), Toast.LENGTH_LONG).show();
+                            }
+                        });
+                */
+            }
+
+
+        }
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

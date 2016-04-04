@@ -3,5 +3,11 @@
     <string name="action_logout">Logout</string>
 
     <string name="saving">Saving note....</string>
-    <string name="saved"></string>
+    <string name="saved">Successfully Saved</string>
+
+
+    <!-- social providers uri schemes -->
+    <string name="fb_app_id">fb1697895913782798</string>
+    <string name="google_app_id">fb1697895913782798</string>
+
 </resources>
