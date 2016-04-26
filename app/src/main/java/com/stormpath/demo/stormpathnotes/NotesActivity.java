@@ -194,6 +194,34 @@ public class NotesActivity extends AppCompatActivity {
         mNotifyMgr.notify(mNotificationId, mBuilder.build());
     }
 
+    private void serverNotification(){
+        //connect w/ own IP, launch notification
+        NotificationCompat.Builder mBuilder =
+                new NotificationCompat.Builder(this)
+                        .setSmallIcon(com.stormpath.demo.stormpathnotes.R.mipmap.ic_launcher)
+                        .setContentTitle(getString(com.stormpath.demo.stormpathnotes.R.string.app_name))
+                        .setContentText(getString(com.stormpath.demo.stormpathnotes.R.string.change_server));
+
+        Intent resultIntent = new Intent(this, NotesServerActivity.class);
+        // Because clicking the notification opens a new ("special") activity, there's
+        // no need to create an artificial back stack.
+        PendingIntent resultPendingIntent =
+                PendingIntent.getActivity(
+                        this,
+                        0,
+                        resultIntent,
+                        PendingIntent.FLAG_UPDATE_CURRENT
+                );
+        mBuilder.setContentIntent(resultPendingIntent);
+        // Sets an ID for the notification
+        int mNotificationId = 001;
+        // Gets an instance of the NotificationManager service
+        NotificationManager mNotifyMgr =
+                (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        // Builds the notification and issues it.
+        mNotifyMgr.notify(mNotificationId, mBuilder.build());
+    }
+
 
     @Override
     public void onResume(){
