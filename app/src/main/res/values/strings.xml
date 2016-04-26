@@ -10,4 +10,13 @@
     <string name="fb_app_id">fb1697895913782798</string>
     <string name="google_app_id">fb1697895913782798</string>
 
+    <!-- server config -->
+    <string name="server">IP address</string>
+    <string name="port">PORT</string>
+    <string name="done">DONE</string>
+    <string name="ip_error">Input a valid IP address for your server</string>
+    <string name="change_server">Connect with your own Stormpath enabled server?</string>
+
+
+
 </resources>

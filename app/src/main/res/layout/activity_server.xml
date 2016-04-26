@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <android.support.design.widget.TextInputEditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number|numberDecimal"
+            android:hint="@string/server"
+            android:digits="0123456789."
+            android:ems="10"
+            android:id="@+id/editText" android:layout_centerVertical="true" android:layout_centerHorizontal="true"/>
+    <android.support.design.widget.TextInputEditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number|numberDecimal"
+            android:digits="0123456789."
+            android:hint="@string/port"
+            android:ems="10"
+            android:id="@+id/editText2" android:layout_below="@+id/editText" android:layout_alignLeft="@+id/editText"
+            android:layout_alignStart="@+id/editText" android:layout_marginTop="40dp"/>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/done"
+            android:id="@+id/button" android:layout_below="@+id/editText2" android:layout_alignRight="@+id/editText2"
+            android:layout_alignEnd="@+id/editText2" android:layout_marginTop="36dp"/>
+</RelativeLayout>

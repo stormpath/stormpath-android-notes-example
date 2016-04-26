@@ -11,7 +11,7 @@
         android:paddingBottom="@dimen/activity_vertical_margin"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:showIn="@layout/activity_notes"
-        tools:context="notes.stormpath.com.stormpathnotes.NotesActivity">
+        tools:context="com.stormpath.demo.stormpathnotes.NotesActivity">
 
     <EditText
             android:id="@+id/note"
