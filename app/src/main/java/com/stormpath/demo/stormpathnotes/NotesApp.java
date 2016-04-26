@@ -1,4 +1,4 @@
-package notes.stormpath.com.stormpathnotes;
+package com.stormpath.demo.stormpathnotes;
 
 import com.stormpath.sdk.Stormpath;
 import com.stormpath.sdk.StormpathConfiguration;
@@ -11,7 +11,7 @@ import android.app.Application;
  */
 public class NotesApp extends Application {
 
-    public static final String baseUrl = "https://stormpathnotes.herokuapp.com/";
+    public static String baseUrl = "https://stormpathnotes.herokuapp.com/";
 
     @Override
     public void onCreate() {

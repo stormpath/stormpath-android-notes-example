@@ -1,4 +1,4 @@
-package notes.stormpath.com.stormpathnotes;
+package com.stormpath.demo.stormpathnotes;
 
 import org.junit.Test;
 

@@ -1,9 +1,7 @@
-package notes.stormpath.com.stormpathnotes;
+package com.stormpath.demo.stormpathnotes;
 
-import com.squareup.moshi.Moshi;
 import com.stormpath.sdk.Stormpath;
 import com.stormpath.sdk.StormpathCallback;
-import com.stormpath.sdk.models.SocialProvidersResponse;
 import com.stormpath.sdk.models.StormpathError;
 import com.stormpath.sdk.models.UserProfile;
 import com.stormpath.sdk.ui.StormpathLoginActivity;
@@ -12,40 +10,37 @@ import com.stormpath.sdk.utils.StringUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import java.io.IOException;
 
 import okhttp3.Call;
 import okhttp3.Callback;
-import okhttp3.Dispatcher;
 import okhttp3.FormBody;
 import okhttp3.Headers;
-import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
-import okio.BufferedSink;
 
 public class NotesActivity extends AppCompatActivity {
 
@@ -62,14 +57,16 @@ public class NotesActivity extends AppCompatActivity {
         // getIntent() should always return the most recent
         setIntent(intent);
 
+
+
         //check contents of intent
         if(getIntent().getData()!=null && getIntent().getData().getScheme()!=null){
 
-            if(getIntent().getData().getScheme().contentEquals(getString(R.string.fb_app_id))){
+            if(getIntent().getData().getScheme().contentEquals(getString(com.stormpath.demo.stormpathnotes.R.string.fb_app_id))){
 
                 //should retrieve the access tokens here and pass it to Stormpath
 
-                Stormpath.socialLogin(SocialProvidersResponse.FACEBOOK, loginResult.getAccessToken().getToken(),
+                /*Stormpath.socialLogin(SocialProvidersResponse.FACEBOOK, loginResult.getAccessToken().getToken(),
                         new StormpathCallback<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
@@ -82,11 +79,11 @@ public class NotesActivity extends AppCompatActivity {
                                 Toast.makeText(NotesActivity.this, error.message(), Toast.LENGTH_LONG).show();
                             }
                         });
-
+                */
 
 
             }//end if
-            else if(getIntent().getData().getScheme().contentEquals(getString(R.string.google_app_id))){
+            else if(getIntent().getData().getScheme().contentEquals(getString(com.stormpath.demo.stormpathnotes.R.string.google_app_id))){
                 /*
                 //google requires something more
 
@@ -114,11 +111,13 @@ public class NotesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_notes);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setContentView(com.stormpath.demo.stormpathnotes.R.layout.activity_notes);
+        Toolbar toolbar = (Toolbar) findViewById(com.stormpath.demo.stormpathnotes.R.id.toolbar);
         setSupportActionBar(toolbar);
 
         context = this;
+
+        serverNotification();
 
         //initialize OkHttp library
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
@@ -132,19 +131,19 @@ public class NotesActivity extends AppCompatActivity {
                 .addNetworkInterceptor(httpLoggingInterceptor)
                 .build();
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(com.stormpath.demo.stormpathnotes.R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Snackbar.make(view, getString(R.string.saving), Snackbar.LENGTH_LONG)
+                Snackbar.make(view, getString(com.stormpath.demo.stormpathnotes.R.string.saving), Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
 
                 saveNote();
             }
         });
 
-        mNote = (EditText)findViewById(R.id.note);
+        mNote = (EditText)findViewById(com.stormpath.demo.stormpathnotes.R.id.note);
         mNote.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -185,6 +184,34 @@ public class NotesActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    private void serverNotification(){
+        //connect w/ own IP, launch notification
+        NotificationCompat.Builder mBuilder =
+                new NotificationCompat.Builder(this)
+                        .setSmallIcon(com.stormpath.demo.stormpathnotes.R.mipmap.ic_launcher)
+                        .setContentTitle(getString(com.stormpath.demo.stormpathnotes.R.string.app_name))
+                        .setContentText(getString(com.stormpath.demo.stormpathnotes.R.string.change_server));
+
+        Intent resultIntent = new Intent(this, NotesServerActivity.class);
+        // Because clicking the notification opens a new ("special") activity, there's
+        // no need to create an artificial back stack.
+        PendingIntent resultPendingIntent =
+                PendingIntent.getActivity(
+                        this,
+                        0,
+                        resultIntent,
+                        PendingIntent.FLAG_UPDATE_CURRENT
+                );
+        mBuilder.setContentIntent(resultPendingIntent);
+        // Sets an ID for the notification
+        int mNotificationId = 001;
+        // Gets an instance of the NotificationManager service
+        NotificationManager mNotifyMgr =
+                (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        // Builds the notification and issues it.
+        mNotifyMgr.notify(mNotificationId, mBuilder.build());
     }
 
 
@@ -271,6 +298,8 @@ public class NotesActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call call, IOException e) {
 
+                call.isCanceled();
+
             }
 
             @Override
@@ -299,7 +328,7 @@ public class NotesActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_notes, menu);
+        getMenuInflater().inflate(com.stormpath.demo.stormpathnotes.R.menu.menu_notes, menu);
         return true;
     }
 
@@ -311,7 +340,7 @@ public class NotesActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_logout) {
+        if (id == com.stormpath.demo.stormpathnotes.R.id.action_logout) {
 
             mNote.setText(""); //clears edit text, could alternatively save to shared preferences
 
@@ -333,7 +362,7 @@ public class NotesActivity extends AppCompatActivity {
             if(intent.getAction().contentEquals(ACTION_GET_NOTES))
                 mNote.setText(intent.getExtras().getString("notes"));
             else if(intent.getAction().contentEquals(ACTION_POST_NOTES))
-                Snackbar.make(mNote, getString(R.string.saved), Snackbar.LENGTH_LONG)
+                Snackbar.make(mNote, getString(com.stormpath.demo.stormpathnotes.R.string.saved), Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
 
         }
