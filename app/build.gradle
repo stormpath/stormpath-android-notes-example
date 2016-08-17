@@ -24,7 +24,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.2.0'
     compile 'com.android.support:design:23.2.0'
-    compile 'com.stormpath.sdk:stormpath-sdk-android:1.0.2'
+    compile 'com.stormpath.sdk:stormpath-sdk-android:1.1.3'
     compile 'com.stormpath.sdk:stormpath-sdk-android-ui:1.0.2'
 
 }
