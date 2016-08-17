@@ -22,7 +22,11 @@ public class NotesApp extends Application {
             Stormpath.setLogLevel(StormpathLogger.VERBOSE);
         }
 
-
+        // Initialize Stormpath
+        StormpathConfiguration stormpathConfiguration = new StormpathConfiguration.Builder()
+                .baseUrl(baseUrl)
+                .build();
+        Stormpath.init(this, stormpathConfiguration);
     }
 
 }
