@@ -1,2 +1,0 @@
-int string stormpath_network_error_message 0x7f020000
-int string stormpath_unknown_error_message 0x7f020001
